@@ -1,14 +1,15 @@
-import { login } from './components/login.js';
 import { home } from './components/home.js';
+import { login } from './components/login.js';
 import { register } from './components/register.js';
+import { wallApp } from './components/wallApp.js';
 
 const root = document.getElementById('root') /* contenido de html */
-
 
 const routes = { 
     '/': home, 
     '/Login': login,
     '/Register': register,
+    '/WallApp':wallApp,
 };
 
 export const navigateRoutes = (pathname) => {
@@ -23,6 +24,6 @@ export const navigateRoutes = (pathname) => {
     root.appendChild(routes[pathname]());
 };
 
-const component = routes[window.location.pathname]() /*variable que contiene el pathname -nombre de la ruta-*/
+const component = routes[window.location.pathname] () /*variable que contiene el pathname -nombre de la ruta-*/
 console.log(component)
   root.appendChild(component); /*Me muestra routes y su contenido*/

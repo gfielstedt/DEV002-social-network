@@ -81,10 +81,10 @@ export const register = () => {
     const emailUser = email.value;
     const passwordUser = password.value;
     registerUser(emailUser, passwordUser);
-    navigateRoutes('/login');
+    navigateRoutes('/wallApp');
   });
 
-  btnHome.addEventListener('click', () => navigateRoutes('/')); /* pathname '/' */
+  btnHome.addEventListener('click', () => navigateRoutes('/wallApp')); /* pathname '/' */
 
   return sectionRegister;
 };
