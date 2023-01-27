@@ -76,7 +76,7 @@ export const register = () => {
   labelPassword.setAttribute('class', 'textForm');
 
   /* function */
-
+  /* btn de enviar formulario de registro */
   btnRegistrarme.addEventListener('click', () => {
     const emailUser = email.value;
     const passwordUser = password.value;
