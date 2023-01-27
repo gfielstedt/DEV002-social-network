@@ -35,9 +35,8 @@ export const home = () => {
   containerBtn.appendChild(btnRegister);
   divHome.appendChild(containerBtn);
 
-  btnLoginGoogle.addEventListener('click', ()=> {
-    navigateRoutes('/login')
-
+  btnLoginGoogle.addEventListener('click', () => {
+    navigateRoutes('/login');
   });
 
   return divHome;

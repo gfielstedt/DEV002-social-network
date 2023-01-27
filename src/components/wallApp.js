@@ -3,17 +3,18 @@
 import { navigateRoutes } from '../main.js';
 
 export const wallApp = () => {
-const wallAppDiv = document.createElement('div');
-const btnVolverHome = document.createElement('button');
+  const wallAppDiv = document.createElement('div');
+  const btnVolverHome = document.createElement('button');
 
+  /* append */
+  wallAppDiv.appendChild(btnVolverHome);
 
-wallAppDiv.appendChild(btnVolverHome);
+  /* atribute */
+  btnVolverHome.setAttribute('class', 'btnVolverHome');
+  btnVolverHome.textContent = 'Inicio';
 
-btnVolverHome.setAttribute('class', 'btnVolverHome');
-btnVolverHome.textContent = 'Inicio';
+  /* event */
+  btnVolverHome.addEventListener('click', () => navigateRoutes('/'));
 
-btnVolverHome.addEventListener('click', () => navigateRoutes('/'));
-
-return wallAppDiv;
+  return wallAppDiv;
 };
-

@@ -1,10 +1,6 @@
 /* eslint-disable import/no-cycle */
-import {
-  navigateRoutes
-} from '../main.js';
-import {
-  logar
-} from '../lib/configFirebase.js';
+import { navigateRoutes } from '../main.js';
+import { logar } from '../lib/configFirebase.js';
 /* PAGINA DE INICIO DE SESION */
 export const login = () => {
   const sectionSignIn = document.createElement('section');
@@ -48,8 +44,8 @@ export const login = () => {
     const passwordUser = password.value;
     logar(emailUser, passwordUser)
       .then((userCredential) => {
-        // Signed in
-        /*const user = userCredential.user;*/
+        console.log(userCredential);
+        // Signed in /*const user = userCredential.user;*/
         navigateRoutes('/WallApp'); // ...
       })
       .catch((error) => {
