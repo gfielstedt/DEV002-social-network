@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-unresolved */
 // Import the functions you need from the SDKs you need (cdn)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
@@ -35,7 +36,6 @@ export const registerUser = (email, password) => {
       // ..
     });
 };
-
 export const logar = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 export const provider = new GoogleAuthProvider();
