@@ -11,7 +11,7 @@
     background-image: url(./imagenes/we-study.png);
     background-size: contain;
     background-repeat: no-repeat;
-    border: white;
+    border-radius: 45px;
     width: 200px;
     height: 200px;
     border: none;
