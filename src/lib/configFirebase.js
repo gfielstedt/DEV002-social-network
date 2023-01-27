@@ -1,9 +1,19 @@
 /* eslint-disable import/no-unresolved */
 // Import the functions you need from the SDKs you need (cdn)
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import {
+  initializeApp
+} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
-import { firebaseConfig } from './firebaseData.js';
+import {
+  firebaseConfig
+} from './firebaseData.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,19 +38,8 @@ export const registerUser = (email, password) => {
     });
 };
 
-export const logar = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-  console.log(user); // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+export const logar = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
-};
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = () => {

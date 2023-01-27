@@ -1,10 +1,12 @@
 /* eslint-disable import/no-cycle */
-import { navigateRoutes } from '../main.js';
-import { logar } from '../lib/configFirebase.js';
+import {
+  navigateRoutes
+} from '../main.js';
+import {
+  logar
+} from '../lib/configFirebase.js';
 /* PAGINA DE INICIO DE SESION */
 export const login = () => {
- 
-  
   const sectionSignIn = document.createElement('section');
   const loginDiv = document.createElement('div');
   const singInWithEmailAndPassword = document.createElement('h1');
@@ -40,15 +42,23 @@ export const login = () => {
   btnHome.setAttribute('class', 'btnHome');
   btnSingIn.textContent = 'Enviar';
   btnHome.addEventListener('click', () => navigateRoutes('/'));
-  
+
   btnSingIn.addEventListener('click', () => {
     const emailUser = email.value;
     const passwordUser = password.value;
-    logar(email, password);
-    navigateRoutes('/wallApp');
-    
+    logar(emailUser, passwordUser)
+      .then((userCredential) => {
+        // Signed in
+        /*const user = userCredential.user;*/
+        navigateRoutes('/WallApp'); // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
   });
-  
 
   loginDiv.appendChild(btnHome);
 

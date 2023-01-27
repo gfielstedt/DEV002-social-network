@@ -5,7 +5,7 @@ import { wallApp } from './components/wallApp.js';
 
 const root = document.getElementById('root') /* contenido de html */
 
-const routes = { 
+const routes = {
     '/': home, 
     '/Login': login,
     '/Register': register,

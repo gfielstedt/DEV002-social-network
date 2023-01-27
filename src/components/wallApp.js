@@ -3,18 +3,17 @@
 import { navigateRoutes } from '../main.js';
 
 export const wallApp = () => {
-
 const wallAppDiv = document.createElement('div');
-const rootDiv = document.createElement('rootDiv');
 const btnVolverHome = document.createElement('button');
 
-wallAppDiv.appendChild(rootDiv);
-rootDiv.append(btnVolverHome);
 
-btnVolverHome.setAtribute('class', 'btnVolverHome');
+wallAppDiv.appendChild(btnVolverHome);
+
+btnVolverHome.setAttribute('class', 'btnVolverHome');
 btnVolverHome.textContent = 'Inicio';
 
 btnVolverHome.addEventListener('click', () => navigateRoutes('/'));
 
 return wallAppDiv;
 };
+
