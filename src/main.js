@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { login } from './components/login.js';
+import { loginpage } from './components/login.js';
 import { home } from './components/home.js';
 import { register } from './components/register.js';
 import { wallApp } from './components/wallApp.js';
@@ -8,7 +8,7 @@ const root = document.getElementById('root'); /* contenido de html */
 
 const routes = {
   '/': home,
-  '/Login': login,
+  '/Login': loginpage,
   '/Register': register,
   '/WallApp': wallApp,
 };
@@ -26,5 +26,5 @@ export const navigateRoutes = (pathname) => {
 };
 
 const component = routes[window.location.pathname]();/* variable que contiene el pathname */
-console.log(component);
+// console.log(component);
 root.appendChild(component); /* Me muestra routes y su contenido */

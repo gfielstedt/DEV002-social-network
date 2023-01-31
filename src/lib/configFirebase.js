@@ -36,7 +36,7 @@ export const registerUser = (email, password) => {
       // ..
     });
 };
-export const logar = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 export const provider = new GoogleAuthProvider();
 
