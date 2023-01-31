@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { navigateRoutes } from '../main.js';
+import { signInWithGoogle, provider } from '../lib/configFirebase.js';
 /* HOME DE INICIO DE SESION DE LA APP */
 export const home = () => {
   const divHome = document.createElement('div'); /* div que contiene el bloque de home */
@@ -35,5 +36,35 @@ export const home = () => {
   containerBtn.appendChild(btnRegister);
   divHome.appendChild(containerBtn);
 
+  btnLoginGoogle.addEventListener('click', () => {
+    signInWithGoogle()
+
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = provider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        console.log(token);
+        const user = result.user;
+        // ...
+        console.log(user);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        console.log(errorCode);
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        console.log(errorMessage);
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        console.log(email);
+        const credential = provider.credentialFromError(error);
+        // ...
+        console.log(credential);
+      });
+
+    navigateRoutes('/WallApp');
+  });
   return divHome;
 };

@@ -56,12 +56,15 @@ export const register = () => {
 
   name.setAttribute('class', 'input');
   name.setAttribute('type', 'text');
+  name.setAttribute('required', '');
 
   lastName.setAttribute('class', 'input');
   lastName.setAttribute('type', 'text');
+  lastName.setAttribute('required', '');
 
   email.setAttribute('class', 'input');
   email.setAttribute('type', 'email');
+  email.setAttribute('required', '');
 
   password.setAttribute('class', 'input');
   password.setAttribute('type', 'password');
@@ -76,15 +79,17 @@ export const register = () => {
   labelPassword.setAttribute('class', 'textForm');
 
   /* function */
-
-  btnRegistrarme.addEventListener('click', () => {
+  /* btn de enviar formulario de registro */
+  formRegister.addEventListener('submit', (event) => {
+    event.preventDefault();
     const emailUser = email.value;
     const passwordUser = password.value;
     registerUser(emailUser, passwordUser);
-    navigateRoutes('/login');
+    navigateRoutes('/WallApp');
+    console.log(emailUser);
   });
 
   btnHome.addEventListener('click', () => navigateRoutes('/')); /* pathname '/' */
-
+  // btnRegistrarme.addEventListener('click', () => navigateRoutes('/wallApp'));
   return sectionRegister;
 };
