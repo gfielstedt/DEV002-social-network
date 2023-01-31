@@ -248,6 +248,7 @@
 .btnSave:hover {
     background-color: #39c;
     color: white;
+    border-bottom: 1px;
     border: none;
     width: 50%;
     cursor: pointer;
