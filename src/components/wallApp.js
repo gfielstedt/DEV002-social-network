@@ -2,6 +2,7 @@
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
 import { navigateRoutes } from '../main.js';
+import { signOut } from '../lib/configFirebase.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -55,3 +56,16 @@ export const wallApp = () => {
 
   /* aca va el event submit para el post con firestore */
 };
+/* function btnLogout */
+
+btnLogout.addEventListener('click', (event) => {
+  signOut(event)
+
+    .then(() => {
+    // Sign-out successful.
+    })
+    .catch((error) => {
+    // An error happened.
+      console.log(error);
+    });
+});

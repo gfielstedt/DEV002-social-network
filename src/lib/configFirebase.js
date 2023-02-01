@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 import { firebaseConfig } from './firebaseData.js';
@@ -65,3 +66,7 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
       console.log(credential);
     }); */
 /* Hola Belén */
+
+/* cierre de sesion */
+
+export const logout = () => signOut(auth);
