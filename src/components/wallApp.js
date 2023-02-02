@@ -1,8 +1,12 @@
 /* eslint-disable import/no-cycle */
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
-import { navigateRoutes } from '../main.js';
-import { signOut } from '../lib/configFirebase.js';
+import {
+  navigateRoutes
+} from '../main.js';
+import {
+  logout
+} from '../lib/configFirebase.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -52,20 +56,21 @@ export const wallApp = () => {
   formWall.appendChild(btnSave);
   home.appendChild(divContainer);
 
+  btnLogout.addEventListener('click', () => {
+    logout()
+      .then(() => {
+        // Sign-out successful.
+        console.log('Sign-out successful');
+        navigateRoutes('/');
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+      });
+
+  });
   return home;
 
   /* aca va el event submit para el post con firestore */
 };
 /* function btnLogout */
-
-btnLogout.addEventListener('click', (event) => {
-  signOut(event)
-
-    .then(() => {
-    // Sign-out successful.
-    })
-    .catch((error) => {
-    // An error happened.
-      console.log(error);
-    });
-});
