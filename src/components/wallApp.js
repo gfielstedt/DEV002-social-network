@@ -1,12 +1,8 @@
 /* eslint-disable import/no-cycle */
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
-import {
-  navigateRoutes
-} from '../main.js';
-import {
-  logout
-} from '../lib/configFirebase.js';
+import { navigateRoutes } from '../main.js';
+import { logout } from '../lib/configFirebase.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -41,7 +37,6 @@ export const wallApp = () => {
   post.rows = '3';
 
   btnLogout.textContent = 'Log out';
-
   titleApp.textContent = 'Crea espacios, comparte ideas, cuenta tus experiencias!';
   btnSave.textContent = 'Save';
 
@@ -67,7 +62,6 @@ export const wallApp = () => {
         // An error happened.
         console.log(error);
       });
-
   });
   return home;
 
