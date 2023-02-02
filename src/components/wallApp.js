@@ -60,14 +60,12 @@ export const wallApp = () => {
     logout()
       .then(() => {
         // Sign-out successful.
-        console.log('Sign-out successful');
         navigateRoutes('/');
       })
       .catch((error) => {
         // An error happened.
         console.log(error);
       });
-
   });
   return home;
 
