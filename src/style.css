@@ -7,14 +7,14 @@
 }
 
 .imgLogo {
-    /* justify-content: center;
+    justify-content: center;
     background-image: url(./imagenes/we-study.png);
     background-size: contain;
     background-repeat: no-repeat;
-    border-radius: 45px; */
+    border-radius: 45px;
     width: 200px;
     height: 200px;
-    /* border: none; */
+    border: none;
 }
 
 .divHome {

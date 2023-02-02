@@ -51,20 +51,20 @@ export const wallApp = () => {
   formWall.appendChild(btnSave);
   home.appendChild(divContainer);
 
+  btnLogout.addEventListener('click', () => {
+    logout()
+      .then(() => {
+        // Sign-out successful.
+        console.log('Sign-out successful');
+        navigateRoutes('/');
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+      });
+  });
   return home;
 
   /* aca va el event submit para el post con firestore */
 };
 /* function btnLogout */
-
-btnLogout.addEventListener('click', (event) => {
-  signOut(event)
-
-    .then(() => {
-    // Sign-out successful.
-    })
-    .catch((error) => {
-    // An error happened.
-      console.log(error);
-    });
-});
