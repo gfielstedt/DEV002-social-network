@@ -3,10 +3,8 @@
 // y contiene la opcion de publicar*/
 import { navigateRoutes } from '../main.js';
 import {
+  savePost,
   logout,
-  database,
-  doc,
-  setDoc,
   auth,
 } from '../lib/configFirebase.js';
 
@@ -57,14 +55,21 @@ export const wallApp = () => {
   formWall.appendChild(btnSave);
   home.appendChild(divContainer);
 
+  /* junto al btn de save esta la creación de post */
+
   btnSave.addEventListener('click', async (event) => {
     event.preventDefault();
     console.log(post.value);
+
     // Add a new document in collection "cities"
-    await setDoc(doc(database, 'post', 'post2'), {
+    savePost({
       text: post.value,
+      date: new Date(),
     });
   });
+
+  /* aqui esta el btn cierre de sesión */
+
   btnLogout.addEventListener('click', () => {
     logout(auth)
       .then(() => {
@@ -78,7 +83,4 @@ export const wallApp = () => {
       });
   });
   return home;
-
-  /* aca va el event submit para el post con firestore */
 };
-/* function btnLogout */
