@@ -1,11 +1,15 @@
 /* eslint-disable import/no-cycle */
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
-import { navigateRoutes } from '../main.js';
+import {
+  navigateRoutes,
+} from '../main.js';
 import {
   savePost,
-  getPost,
-  pruebas,
+  query,
+  collection,
+  db,
+  onSnapshot,
   logout,
   auth,
 } from '../lib/configFirebase.js';
@@ -62,24 +66,28 @@ export const wallApp = () => {
 
   btnSave.addEventListener('click', async (event) => {
     event.preventDefault();
-    console.log(post.value);
 
-    const querySnapshot = await getPost();
-    console.log(querySnapshot.docs);
-
-    pruebas();
-
-    // Add a new document in collection "cities"
-    savePost({
-      text: post.value,
-      date: new Date(), // cambiar por recomendación de mauro notas en block Giana
+    const q = query(collection(db, 'post'));
+    const postdeFirestore = [];
+    const prueba = await onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        postdeFirestore.push(doc.data());
+        console.log(doc.data()); // con este imprimir en muro
+      });
     });
-
-    // limpia el text area
-    formWall.reset();
-
-    // listar datos desde firestore
   });
+
+  // Add a new document in collection "cities"
+  savePost({
+    text: post.value,
+    date: new Date(), // cambiar por recomendación de mauro notas en block Giana
+  });
+
+  // limpia el text area
+  formWall.reset();
+
+  // listar datos desde firestore
+  //};
 
   /* aqui esta el btn cierre de sesión */
 
