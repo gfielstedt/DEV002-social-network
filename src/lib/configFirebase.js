@@ -10,7 +10,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getFirestore, addDoc, collection } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+import { getFirestore, addDoc, getDocs, collection, query, onSnapshot } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { firebaseConfig } from './firebaseData.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -53,3 +53,15 @@ export {
 };
 
 export const savePost = (post) => addDoc(collection(db, 'post'), post);
+export const getPost = () => getDocs(collection(db, 'post'));
+
+export const pruebas = () => {
+  const q = query(collection(db, 'post'));
+  const prueba = onSnapshot(q, (querySnapshot) => {
+    const post = [];
+    querySnapshot.forEach((doc) => {
+      post.push(doc.data());
+    });
+    console.log(post);
+  });
+};
