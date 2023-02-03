@@ -2,7 +2,13 @@
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
 import { navigateRoutes } from '../main.js';
-import { logout } from '../lib/configFirebase.js';
+import {
+  logout,
+  database,
+  doc,
+  setDoc,
+  auth,
+} from '../lib/configFirebase.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -51,10 +57,19 @@ export const wallApp = () => {
   formWall.appendChild(btnSave);
   home.appendChild(divContainer);
 
+  btnSave.addEventListener('click', async (event) => {
+    event.preventDefault();
+    console.log(post.value);
+    // Add a new document in collection "cities"
+    await setDoc(doc(database, 'post', 'post2'), {
+      text: post.value,
+    });
+  });
   btnLogout.addEventListener('click', () => {
-    logout()
+    logout(auth)
       .then(() => {
         // Sign-out successful.
+        console.log('Sign-out successful');
         navigateRoutes('/');
       })
       .catch((error) => {
