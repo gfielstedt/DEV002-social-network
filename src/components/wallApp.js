@@ -4,6 +4,8 @@
 import { navigateRoutes } from '../main.js';
 import {
   savePost,
+  getPost,
+  pruebas,
   logout,
   auth,
 } from '../lib/configFirebase.js';
@@ -14,6 +16,7 @@ export const wallApp = () => {
   const btnLogout = document.createElement('button');
   const home = document.createElement('div');
   const divHome = document.createElement('section');
+  /* aqui deberia aparecer el nombre de quien ingreso */
   const welcome = document.createElement('nav');
   const titleApp = document.createElement('h2');
   const formWall = document.createElement('form');
@@ -61,11 +64,21 @@ export const wallApp = () => {
     event.preventDefault();
     console.log(post.value);
 
+    const querySnapshot = await getPost();
+    console.log(querySnapshot.docs);
+
+    pruebas();
+
     // Add a new document in collection "cities"
     savePost({
       text: post.value,
-      date: new Date(),
+      date: new Date(), // cambiar por recomendación de mauro notas en block Giana
     });
+
+    // limpia el text area
+    formWall.reset();
+
+    // listar datos desde firestore
   });
 
   /* aqui esta el btn cierre de sesión */
