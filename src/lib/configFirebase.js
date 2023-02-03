@@ -10,7 +10,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-
+import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 import { firebaseConfig } from './firebaseData.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,7 +20,7 @@ import { firebaseConfig } from './firebaseData.js';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
+const database = getFirestore();
 export const registerUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -70,3 +70,9 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
 /* cierre de sesion */
 
 export const logout = () => signOut(auth);
+export {
+  auth,
+  database,
+  doc,
+  setDoc,
+};
