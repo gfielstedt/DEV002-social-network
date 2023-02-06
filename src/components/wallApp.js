@@ -1,18 +1,9 @@
 /* eslint-disable import/no-cycle */
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
-import {
-  navigateRoutes,
-} from '../main.js';
-import {
-  savePost,
-  query,
-  collection,
-  db,
-  onSnapshot,
-  logout,
-  auth,
-} from '../lib/configFirebase.js';
+import { navigateRoutes } from '../main.js';
+// eslint-disable-next-line object-curly-newline
+import { savePost, query, collection, db, onSnapshot, logout, auth } from '../lib/configFirebase.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -72,8 +63,9 @@ export const wallApp = () => {
     const prueba = await onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         postdeFirestore.push(doc.data());
-        console.log(doc.data()); // con este imprimir en muro
+        // console.log(doc.data()); // con este imprimir en muro
       });
+      formWall.reset();
     });
   });
 
@@ -83,11 +75,8 @@ export const wallApp = () => {
     date: new Date(), // cambiar por recomendación de mauro notas en block Giana
   });
 
-  // limpia el text area
-  formWall.reset();
-
   // listar datos desde firestore
-  //};
+  // };
 
   /* aqui esta el btn cierre de sesión */
 
@@ -95,6 +84,7 @@ export const wallApp = () => {
     logout(auth)
       .then(() => {
         // Sign-out successful.
+        alert('Estas seguro de que quieres cerrar sesion?'); // aca debe ir una ventana modal
         console.log('Sign-out successful');
         navigateRoutes('/');
       })
