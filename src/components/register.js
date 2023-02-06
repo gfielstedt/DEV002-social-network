@@ -47,8 +47,8 @@ export const register = () => {
 
   labelName.textContent = 'Nombre';
   labelLastName.textContent = 'Apellido';
-  labelEmail.textContent = 'Email';
-  labelPassword.textContent = 'Password';
+  labelEmail.textContent = 'Correo';
+  labelPassword.textContent = 'Contraseña';
   btnHome.textContent = '';
 
   btnHome.setAttribute('class', 'btnHome');

@@ -47,9 +47,9 @@ export const wallApp = () => {
 
   post.rows = '3';
 
-  btnLogout.textContent = 'Log out';
-  titleApp.textContent = 'Crea espacios, comparte ideas, cuenta tus experiencias!';
-  btnSave.textContent = 'Save';
+  btnLogout.textContent = 'Cerrar Sesión';
+  titleApp.textContent = '¡Crea espacios, comparte ideas, cuenta tus experiencias!';
+  btnSave.textContent = 'Enviar';
 
   /* append */
   root.appendChild(divroot);

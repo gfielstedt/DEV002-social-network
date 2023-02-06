@@ -36,9 +36,9 @@ export const loginpage = () => {
   btnLogIn.setAttribute('type', 'submit');
 
   text.textContent = 'Inicia sesión';
-  emailLabel.textContent = 'Email';
-  passwordLabel.textContent = 'Password';
-  btnLogIn.textContent = 'Log in';
+  emailLabel.textContent = 'Correo';
+  passwordLabel.textContent = 'Contraseña';
+  btnLogIn.textContent = 'Ingresar';
 
   btnHome.addEventListener('click', () => navigateRoutes('/'));
 
