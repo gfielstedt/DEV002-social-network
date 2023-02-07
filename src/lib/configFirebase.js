@@ -3,31 +3,18 @@
 // Import the functions you need from the SDKs you need (cdn)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
+  getAuth, createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, GoogleAuthProvider,
+  signInWithPopup, signOut,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import {
-  getFirestore,
-  addDoc,
-  getDocs,
-  collection,
-  query,
-  onSnapshot,
-} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
+
 import { firebaseConfig } from './firebaseData.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore();
+export const auth = getAuth(app);
 
 export const registerUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
@@ -52,27 +39,3 @@ export const provider = new GoogleAuthProvider();
 export const signInWithGoogle = () => signInWithPopup(auth, provider);
 
 export const logout = () => signOut(auth);
-export {
-  auth,
-  db,
-  addDoc,
-  collection,
-  query,
-  onSnapshot,
-};
-
-export const savePost = (post) => addDoc(collection(db, 'post'), post);
-export const getPost = () => getDocs(collection(db, 'post'));
-
-/* export const pruebas = async () => {
-  const q = query(collection(db, 'post'));
-  const post = [];
-  const prueba = await onSnapshot(q, (querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      post.push(doc.data());
-    });
-    return post;
-  });
-  console.log('linea 74', post);
-  return post;
-}; */
