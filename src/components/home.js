@@ -1,27 +1,33 @@
 /* eslint-disable import/no-cycle */
 import { navigateRoutes } from '../main.js';
-import { signInWithGoogle, provider } from '../lib/configFirebase.js';
+import { signInWithGoogle, provider, login, registerUser } from '../lib/configFirebase.js';
 /* HOME DE INICIO DE SESION DE LA APP */
 export const home = () => {
   const divHome = document.createElement('div'); /* div que contiene el bloque de home */
 
   const imgLogo = document.createElement('img'); /* imagen del logo de la app */
 
-  const containerBtn = document.createElement('div'); /* div que contiene los botones */
   const btnLogin = document.createElement('button');
   const btnLoginGoogle = document.createElement('button'); /* inicia sesion - continue with google */
+  const containerBtn = document.createElement('div'); /* div que contiene los botones */
+
+  const containerRegister = document.createElement('div');
   const text = document.createElement('h3');
   const btnRegister = document.createElement('button'); /* boton de registro */
 
-  btnLogin.textContent = 'LOG IN';
-  btnLoginGoogle.textContent = '';
-  text.textContent = 'Dont have an account?';
+  btnLogin.textContent = 'Iniciar sesión';
+  btnLoginGoogle.textContent = 'Iniciar sesion con Google';
+  text.textContent = 'No tienes una cuenta?';
   btnRegister.textContent = 'Registrate';
 
+  divHome.setAttribute('class', 'divHome');
   imgLogo.setAttribute('class', 'imgLogo');
-  containerBtn.setAttribute('class', 'containerBtn');
   btnLogin.setAttribute('class', 'btnLogin');
   btnLoginGoogle.setAttribute('class', 'btnLoginGoogle');
+  btnLoginGoogle.setAttribute('img', 'imgGoogle');
+  containerBtn.setAttribute('class', 'containerBtn');
+
+  containerRegister.setAttribute('class', 'containerRegister');
   text.setAttribute('class', 'texth3');
   btnRegister.setAttribute('class', 'btnRegister');
 
@@ -32,9 +38,14 @@ export const home = () => {
   containerBtn.appendChild(imgLogo);
   containerBtn.appendChild(btnLogin);
   containerBtn.appendChild(btnLoginGoogle);
-  containerBtn.appendChild(text);
-  containerBtn.appendChild(btnRegister);
+  containerRegister.appendChild(text);
+  containerRegister.appendChild(btnRegister);
   divHome.appendChild(containerBtn);
+  divHome.appendChild(containerRegister);
+
+  btnRegister.addEventListener('click', () => {
+    registerUser();
+  });
 
   btnLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
