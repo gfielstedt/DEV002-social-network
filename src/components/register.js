@@ -8,32 +8,39 @@ export const register = () => {
   const textSignIn = document.createElement('p');
   const divRegisterForm = document.createElement('div'); /* contenedor donde esta en formulario */
   const formRegister = document.createElement('form'); /* formulario */
+
+  const secName = document.createElement('div');
   const labelName = document.createElement('label');
   const name = document.createElement('input');
-  const labelLastName = document.createElement('label');
-  const lastName = document.createElement('input');
+
+  const secEmail = document.createElement('div');
   const labelEmail = document.createElement('label');
   const email = document.createElement('input');
+
+  const secPassword = document.createElement('div');
   const labelPassword = document.createElement('label');
   const password = document.createElement('input');
-  const btnRegistrarme = document.createElement('input');
-  const btnHome = document.createElement('button');
+
+  const btnRegistrarme = document.createElement('button');
+
+  const btnbackHome = document.createElement('button');
   const root = document.getElementById('root');
 
   /* appen */
-  root.append(btnHome);
+  root.append(btnbackHome);
   sectionRegister.appendChild(divRegisterText);
   divRegisterText.appendChild(textSignIn);
   sectionRegister.appendChild(divRegisterForm);
   divRegisterForm.appendChild(formRegister);
-  formRegister.appendChild(labelName);
-  formRegister.appendChild(name);
-  formRegister.appendChild(labelLastName);
-  formRegister.appendChild(lastName);
-  formRegister.appendChild(labelEmail);
-  formRegister.appendChild(email);
-  formRegister.appendChild(labelPassword);
-  formRegister.appendChild(password);
+  formRegister.appendChild(secName);
+  secName.appendChild(labelName);
+  secName.appendChild(name);
+  formRegister.appendChild(secEmail);
+  secEmail.appendChild(labelEmail);
+  secEmail.appendChild(email);
+  formRegister.appendChild(secPassword);
+  secPassword.appendChild(labelPassword);
+  secPassword.appendChild(password);
   formRegister.appendChild(btnRegistrarme);
 
   /* atribute */
@@ -46,35 +53,34 @@ export const register = () => {
   formRegister.setAttribute('id', 'formRegister');
 
   labelName.textContent = 'Nombre';
-  labelLastName.textContent = 'Apellido';
   labelEmail.textContent = 'Email';
   labelPassword.textContent = 'Password';
-  btnHome.textContent = '';
+  btnbackHome.textContent = '';
+  btnRegistrarme.textContent = 'Registrarme';
 
-  btnHome.setAttribute('class', 'btnHome');
-  btnHome.setAttribute('type', 'text');
+  btnbackHome.setAttribute('class', 'btnHome');
+  btnbackHome.setAttribute('type', 'text');
 
+  secName.setAttribute('class', 'section-input');
   name.setAttribute('class', 'input');
   name.setAttribute('type', 'text');
   name.setAttribute('required', '');
 
-  lastName.setAttribute('class', 'input');
-  lastName.setAttribute('type', 'text');
-  lastName.setAttribute('required', '');
-
+  secEmail.setAttribute('class', 'section-input');
   email.setAttribute('class', 'input');
   email.setAttribute('type', 'email');
   email.setAttribute('required', '');
 
+  secPassword.setAttribute('class', 'section-input');
   password.setAttribute('class', 'input');
   password.setAttribute('type', 'password');
+  password.setAttribute('required', '');
 
   btnRegistrarme.setAttribute('class', 'btnRegistrarme');
   btnRegistrarme.setAttribute('type', 'submit');
 
   textSignIn.setAttribute('class', 'p');
   labelName.setAttribute('class', 'textForm');
-  labelLastName.setAttribute('class', 'textForm');
   labelEmail.setAttribute('class', 'textForm');
   labelPassword.setAttribute('class', 'textForm');
 
@@ -89,7 +95,7 @@ export const register = () => {
     console.log(emailUser);
   });
 
-  btnHome.addEventListener('click', () => navigateRoutes('/')); /* pathname '/' */
+  btnbackHome.addEventListener('click', () => navigateRoutes('/')); /* pathname '/' */
   // btnRegistrarme.addEventListener('click', () => navigateRoutes('/wallApp'));
   return sectionRegister;
 };

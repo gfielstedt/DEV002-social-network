@@ -6,76 +6,70 @@
     background-color: white;
 }
 
+.divHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .imgLogo {
     justify-content: center;
     background-image: url(./imagenes/we-study.png);
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 45px;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     border: none;
-}
-
-.divHome {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* flex-direction: column;
-    flex-wrap: wrap; */
-    /* margin: 10% 10% 10% 10%; */
 }
 
 .containerBtn {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: center;
     margin: 30% 0% 30% 0%;
+    gap: 3vh;
+    background-color: white;
 }
 
 .btnLogin {
-   /*para contenedores*/ display: flex; 
+    display: flex;
     justify-content: center;
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-    padding: 10px 10px;
-    width: 200px;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 40px;
     margin: 10% 0% 0% 0%;
 }
 
-.btnLoginGoogle {
-    /* display: flex;
-    justify-content: center; */
-    background-image: url(./imagenes/Sign-google.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    /* margin: 10% 20% 1% 20%; */
-    /* background-position: center; */
-    border: none;
-    width: 200px;
-    height: 80px;
-    cursor: pointer;
-    /* background-color: black; */
-    /* color: white; */
-    /* border-radius: 5px; */
-    /* padding: 10px 10px; */
-}
-
-.containerBtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3vh;
-    background-color: white;
-    /* margin: 25% 50% 25% 50%; */
-}
-
 .btnLogin:hover {
-    background-color: #39c;
-    color: white;
-    border: none;
+    background-color: rgb(251, 255, 0);
+    color: black;
+    border: 2px solid black;
     cursor: pointer;
+}
+ /* ACA TENGO UNA DUDA; QUIERO COLOCAR EL LOGO DE GOOGLE DENTRO DEL BOTON */
+.btnLoginGoogle {
+    background-color: black;
+    /* background-image: url(imagenes/google.png);
+    background-repeat: no-repeat; */
+    color: white;
+    border-radius: 30px;
+    padding: 10px 40px;
+}
+.btnLoginGoogle:hover {
+    background-color: rgb(251, 255, 0);
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.containerRegister {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .btnRegister {
@@ -83,75 +77,64 @@
     justify-content: center;
     background-color: black;
     color: white;
-    border-radius: 5px;
-    padding: 10px 10px;
+    border-radius: 30px;
+    padding: 10px 40px;
 }
 
 .btnRegister:hover {
-    background-color: #39c;
-    color: white;
-    border: none;
+    background-color: rgb(251, 255, 0);
+    color: black;
+    border: 2px solid black;
     cursor: pointer;
 }
 
 
-/************* REGISTER **********/
+/***************************************** REGISTER **********************************************/
 /* boton a home */
 .btnHome {
     justify-content: flex-start;
     /* background-color: black; */
-    background-image: url(./imagenes/flecha-birrete.jpg);
+    background-image: url(./imagenes/flecha-birrete.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     color: white;
     border: 0;
-    width: 100px;
-    height: 100px;
+    width: 40px;
+    height: 50px;
     cursor: pointer;
-
 }
-
 /* contenedor */
 .sectionRegister {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10% 10% 10% 10%;
-    background-color: white;
-    border: 5px;
-    border-color: black;
-    border-radius: 10px;
-
+    padding: 5% 5%;
 }
-
 /* Register: 'por favor ingresa tus datos' */
 .divRegisterText .p {
-    /* display: flex;
-    justify-content: center; */
-    background-color: white;
-    font-size: 30px;
-}
-
-.divRegisterForm {
-    display: flex;
+    font-size: 25px;
 }
 
 .formRegister {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 4%;
     gap: 2vh;
+    margin: 10px 20px;
     /* padding: 10% 20% 10% 20%; */
 }
 
+.section-input {
+    display: flex;
+    margin: 16px 0px;
+    flex-direction: column;
+
+}
 /* todos los input del form */
 .input {
-    border-radius: 5px;
-    border: 3px solid;
-    border-color: #39c;
-    background-color: white;
+    border:none;
+    border-bottom:1px solid rgb(0, 0, 0);
 }
 
 .btnRegistrarme {
@@ -160,23 +143,23 @@
     align-items: center;
     background-color: black;
     color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 200px;
     height: 50px;
 }
 
 .btnRegistrarme:hover {
-    background-color: #39c;
-    color: white;
-    border: none;
+    background-color: rgb(251, 255, 0);
+    color: black;
+    border: 2px solid black;
     cursor: pointer;
 }
 
 .textForm {
-    font-size: 25px;
+    font-size: 20px;
 }
 
-/* ****** LOGIN ******* */
+/* ***************************** LOGIN *********************************** */
 /* btnHome tiene las mismas propiedades en todas las rutas */
 
 .sectionSignIn {
@@ -198,36 +181,52 @@
     align-items: center;
     background-color: black;
     color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     width: 200px;
     height: 50px;
 }
 
 .btnLogIn:hover {
-    background-color: #39c;
-    color: white;
-    border: none;
+    background-color: rgb(251, 255, 0);
+    color: black;
+    border: 2px solid black;
     cursor: pointer;
 }
 
-/* ****** WALL ******* */
+/* *********************************** WALL ********************************** */
+
+.root { 
+    display: flex;
+    flex-direction: column;
+}
+
 .div-root {
     display: flex;
     justify-content: flex-end;
 }
 .btn-logout {
     justify-content: flex-end;
-    background-color: white;
+    background-image: url(./imagenes/signout.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    border: none;
+    /* background-color: white;
     color: rgb(0, 0, 0);
     border: none;
     width: 100px;
-    height: 50px;
+    height: 50px; */
     cursor: pointer;
+}
+.title-app {
+    font-size: 25px;
 }
 .post-form{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 2vh;
 }
 
 .btnSave {
@@ -249,6 +248,8 @@
     width: 50%;
     cursor: pointer;
 }
+
+
 
 @media screen and (min-width:900px) and (max-width:1400px) {
 
