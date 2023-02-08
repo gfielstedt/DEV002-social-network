@@ -4,6 +4,7 @@
 import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
+import { savePost, getPost } from '../lib/Firestore.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -79,6 +80,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     e.preventDefault();
 
     const postSave = document.getElementById('post');
-    console.log(postSave.value);
+    savePost(post.value);
+
+    postForm.reset();
+    // console.log(postSave.value);
   });
 });
+
+getPost();
