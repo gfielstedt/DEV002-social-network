@@ -50,13 +50,14 @@ export const loginpage = () => {
       .then((userCredential) => {
         console.log(userCredential);
         // Signed in /*const user = userCredential.user;*/
-        navigateRoutes('/wallApp'); // ...
+        navigateRoutes('/WallApp'); // ...
       })
       .catch((error) => {
+        console.error(error);
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+        // console.log(errorCode);
+        // console.log(errorMessage);
       });
   });
 

@@ -47,6 +47,10 @@ export const home = () => {
     registerUser();
   });
 
+  btnLogin.addEventListener('click', () => {
+    login();
+  });
+
   btnLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
 

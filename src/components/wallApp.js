@@ -77,7 +77,7 @@ export const wallApp = () => {
 };
 /* junto al btn de save esta la creación de post */
 
-window.addEventListener('click', async (event) => { // me permite visualizar el contenido
+export const getDataPost = async (event) => { // me permite visualizar el contenido
   const postForm = document.getElementById('post-form'); // contiene el formulario
   const divContainer = document.getElementById('tasks-container'); // contenedor del form
 
@@ -104,6 +104,6 @@ window.addEventListener('click', async (event) => { // me permite visualizar el 
     });
   });
   // const querySnapshot = await getPost();
-});
+};
 
-getPost();
+// getPost();
