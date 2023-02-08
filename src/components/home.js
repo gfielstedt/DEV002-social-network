@@ -13,9 +13,9 @@ export const home = () => {
   const text = document.createElement('h3');
   const btnRegister = document.createElement('button'); /* boton de registro */
 
-  btnLogin.textContent = 'LOG IN';
+  btnLogin.textContent = 'Iniciar Sesión';
   btnLoginGoogle.textContent = '';
-  text.textContent = 'Dont have an account?';
+  text.textContent = '¿No tienes una cuenta?';
   btnRegister.textContent = 'Registrate';
 
   imgLogo.setAttribute('class', 'imgLogo');
