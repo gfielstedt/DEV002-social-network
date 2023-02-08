@@ -4,7 +4,9 @@
 import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
-import { savePost, getPost } from '../lib/Firestore.js';
+import {
+  savePost, getPost, onSnapshot, collection, db,
+} from '../lib/Firestore.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
@@ -74,17 +76,33 @@ export const wallApp = () => {
 };
 /* junto al btn de save esta la creación de post */
 
-window.addEventListener('DOMContentLoaded', (event) => {
-  const postForm = document.getElementById('post-form');
-  postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+window.addEventListener('click', async (event) => { // me permite visualizar el contenido
+  const postForm = document.getElementById('post-form'); // contiene el formulario
+  const divContainer = document.getElementById('tasks-container'); // contenedor del form
 
-    const postSave = document.getElementById('post');
-    savePost(post.value);
+  onSnapshot(collection(db, 'posteos'), (querySnapshot) => {
+    let html = '';
 
-    postForm.reset();
-    // console.log(postSave.value);
+    querySnapshot.forEach(doc => {
+      const postWall = doc.data();
+      html += `
+    <div> 
+      <h3>${postWall.post}</h3>
+    </div> `;
+      // console.log(doc.data());
+    });
+    divContainer.innerHTML = html;
+    postForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // const postSave = document.getElementById('post');
+      savePost(post.value);
+
+      postForm.reset();
+      // console.log(postSave.value);
+    });
   });
+  // const querySnapshot = await getPost();
 });
 
 getPost();
