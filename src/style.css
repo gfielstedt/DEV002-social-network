@@ -1,4 +1,10 @@
 /* ************** HOME *************** */
+body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
 
 * {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -70,6 +76,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+
 }
 
 .btnRegister {
@@ -106,28 +113,31 @@
 }
 /* contenedor */
 .sectionRegister {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 5% 5%;
-}
-/* Register: 'por favor ingresa tus datos' */
-.divRegisterText .p {
-    font-size: 25px;
+    display: flexbox;
+    width: 250px;
+    height: 30px;
+    margin: 5% auto 0;
+    color: black;
+    border-radius: 15px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    
+    
 }
 
 .formRegister {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 2vh;
-    margin: 10px 20px;
-    /* padding: 10% 20% 10% 20%; */
+    gap: 5vh;
+    margin: 5px 5px;
+ 
 }
 
 .section-input {
     display: flex;
-    margin: 16px 0px;
+    margin:15px 5px;
     flex-direction: column;
 
 }
@@ -138,14 +148,17 @@
 }
 
 .btnRegistrarme {
-    display: flex;
     justify-content: center;
+    position: relative;
+    translate: 45px;
     align-items: center;
     background-color: black;
     color: white;
-    border-radius: 30px;
-    width: 200px;
-    height: 50px;
+    border-radius: 50px;
+    width: 150px;
+    height: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
 }
 
 .btnRegistrarme:hover {
@@ -156,7 +169,7 @@
 }
 
 .textForm {
-    font-size: 20px;
+    font-size: 10px;
 }
 
 /* ***************************** LOGIN *********************************** */
