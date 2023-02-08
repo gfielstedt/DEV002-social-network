@@ -16,8 +16,8 @@ export const home = () => {
   const btnRegister = document.createElement('button'); /* boton de registro */
 
   btnLogin.textContent = 'Iniciar sesión';
-  btnLoginGoogle.textContent = 'Iniciar sesion con Google';
-  text.textContent = 'No tienes una cuenta?';
+  btnLoginGoogle.textContent = 'Iniciar sesión con Google';
+  text.textContent = '¿No tienes una cuenta?';
   btnRegister.textContent = 'Registrate';
 
   divHome.setAttribute('class', 'divHome');
