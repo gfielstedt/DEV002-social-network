@@ -23,6 +23,7 @@ export const wallApp = () => {
   const divContainer = document.createElement('div');
 
   divroot.className = 'div-root';
+  root.className = 'root';
   btnLogout.className = 'btn-logout';
   home.className = 'div-home';
   divHome.className = 'div-home-container';
@@ -42,7 +43,7 @@ export const wallApp = () => {
 
   post.rows = '3';
 
-  btnLogout.textContent = 'Log out';
+  // btnLogout.textContent = 'Log out';
   titleApp.textContent = 'Crea espacios, comparte ideas, cuenta tus experiencias!';
   btnSave.textContent = 'Save';
 
