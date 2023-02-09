@@ -52,9 +52,9 @@ export const register = () => {
   formRegister.setAttribute('class', 'formRegister');
   formRegister.setAttribute('id', 'formRegister');
 
-  labelName.textContent = 'Nombre';
-  labelEmail.textContent = 'Email';
-  labelPassword.textContent = 'Password';
+  labelName.textContent = 'Nombre y Apellido';
+  labelEmail.textContent = 'Correo';
+  labelPassword.textContent = 'Contraseña';
   btnbackHome.textContent = '';
   btnRegistrarme.textContent = 'Registrarme';
 
