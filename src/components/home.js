@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { navigateRoutes } from '../main.js';
-import { signInWithGoogle, provider, login, registerUser } from '../lib/configFirebase.js';
+import { signInWithGoogle, provider, login, registerUser, auth } from '../lib/configFirebase.js';
 /* HOME DE INICIO DE SESION DE LA APP */
 export const home = () => {
   const divHome = document.createElement('div'); /* div que contiene el bloque de home */
@@ -32,7 +32,7 @@ export const home = () => {
   btnRegister.setAttribute('class', 'btnRegister');
 
   btnLogin.addEventListener('click', () => navigateRoutes('/Login'));
-  btnLoginGoogle.addEventListener('click', () => navigateRoutes('/Login'));
+  btnLoginGoogle.addEventListener('click', () => navigateRoutes('/WallApp'));
   btnRegister.addEventListener('click', () => navigateRoutes('/Register')); /* evento click para ejecutar funcion navigate. -param:pathname- */
 
   containerBtn.appendChild(imgLogo);
@@ -53,7 +53,6 @@ export const home = () => {
 
   btnLoginGoogle.addEventListener('click', () => {
     signInWithGoogle()
-
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = provider.credentialFromResult(result);
@@ -79,7 +78,7 @@ export const home = () => {
         console.log(credential);
       });
 
-    navigateRoutes('/WallApp');
+    /* navigateRoutes('/WallApp'); */
   });
   return divHome;
 };
