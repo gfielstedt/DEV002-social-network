@@ -89,10 +89,13 @@ export const getDataPost = async (event) => { // me permite visualizar el conten
       html += `
     <div> 
       <h3>${postWall.post}</h3>
+      <button class=btn-delete> Eliminar </button>
     </div> `;
       // console.log(doc.data());
     });
     divContainer.innerHTML = html;
+    const deleteBtn = divContainer.querySelectorAll('.btn-delete');
+    console.log(deleteBtn);
     postForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
