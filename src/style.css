@@ -18,13 +18,13 @@
 }
 
 .imgLogo {
-    display: flex;
-    justify-content: center;
-    background-image: url(./imagenes/we-study.png);
-    background-size: contain;
-    width: 200px;
-    height: 200px;
-    margin:0 ;
+        /* display: flex; */
+        justify-content: center;
+        background-image: url(./imagenes/we-study.png);
+        background-size: contain;
+        margin: 30% 0% 0% 0%;
+        width: 200px;
+        height: 200px;
 }
 
 .containerBtn {
@@ -32,7 +32,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    margin: 40% 0% 30% 0%;
+    margin: 30% 0% 20% 0%;
     gap: 0.5vh;
     background-color: white;
 }
@@ -43,12 +43,8 @@
     background-color: black;
     color: white;
     border-radius: 50px;
-    width: 190px;
-    height:30px ;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
     padding: 10px 40px;
-    margin: 20% 0% 6% 0%;
 }
 
 .btnLogin:hover {
@@ -65,9 +61,6 @@
     border-radius: 50px;
     padding: 10px 40px;
     border-radius: 50px;
-    width: 270px;
-    height: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
 }
 .btnLoginGoogle:hover {
@@ -85,16 +78,11 @@
 }
 
 .btnRegister {
-    position: relative;
-    translate: 35px;
     justify-content: center;
     background-color: black;
     color: white;
     border-radius: 50px;
     padding: 10px 40px;
-    width: 170px;
-    height: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
 }
 
@@ -123,16 +111,9 @@
 }
 /* contenedor */
 .sectionRegister {
-    display: flexbox;
-    width: 250px;
-    height: 30px;
-    margin: 5% auto 0;
-    color: black;
-    border-radius: 15px;
-    border: none;
-    font-size: 14px;
-    font-weight: bold;   
-    
+    display: flex;
+    margin: 10%;
+    flex-direction: column;
 }
 
 .formRegister {
@@ -157,18 +138,13 @@
 }
 
 .btnRegistrarme {
-    justify-content: center;
-    position: relative;
-    translate: 45px;
     background-color: black;
     color: white;
     border-radius: 50px;
-    width: 150px;
-    height: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 12px;
-    
 
+    padding: 10px 40px;
+    font-size: 14px;
+    margin: 10px 40px;
 }
 
 .btnRegistrarme:hover {
@@ -186,40 +162,25 @@
 /* btnHome tiene las mismas propiedades en todas las rutas */
 
 .sectionSignIn {
-    display: flexbox;
-    width: 250px;
-    height: 30px;
-    margin: 5% auto 0;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10vh;
+    margin: 10%;
     color: black;
-    border-radius: 15px;
-    border: none;
     font-size: 14px;
-    font-weight: bold;
-
 }
 
 .login-div {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 3vh;
 }
 
 .btnLogIn {
-    align-items: center;
     background-color: black;
     color: white;
     border-radius: 50px;
-    width: 150px;
-    height: 30px;
-    font-size: 12px;
-    gap: 5vh;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding: 2px 0px 2px 0px;
+    width: 50%;
+    margin: 10px;
+    height: 35px;
 }
    
 

@@ -42,7 +42,7 @@ export const home = () => {
   /* btnLoginGoogle.addEventListener('click', () => navigateRoutes('/WallApp')); */
   btnRegister.addEventListener('click', () => navigateRoutes('/Register')); /* evento click para ejecutar funcion navigate. -param:pathname- */
 
-  containerBtn.appendChild(imgLogo);
+  divHome.appendChild(imgLogo);
   containerBtn.appendChild(btnLogin);
   containerBtn.appendChild(btnLoginGoogle);
   containerRegister.appendChild(text);
@@ -68,10 +68,11 @@ export const home = () => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
-        // IdP data available using getAdditionalUserInfo(result)
         navigateRoutes('/WallApp');
-      }).catch((error) => {
-      // Handle Errors here.
+      })
+      .catch((error) => {
+        // Handle Errors here.
+
         const errorCode = error.code;
         console.Console(errorCode);
         const errorMessage = error.message;
