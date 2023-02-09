@@ -35,7 +35,7 @@ export const home = () => {
   btnLoginGoogle.addEventListener('click', () => navigateRoutes('/Login'));
   btnRegister.addEventListener('click', () => navigateRoutes('/Register')); /* evento click para ejecutar funcion navigate. -param:pathname- */
 
-  containerBtn.appendChild(imgLogo);
+  divHome.appendChild(imgLogo);
   containerBtn.appendChild(btnLogin);
   containerBtn.appendChild(btnLoginGoogle);
   containerRegister.appendChild(text);
@@ -63,6 +63,7 @@ export const home = () => {
         const user = result.user;
         // ...
         console.log(user);
+        navigateRoutes('/WallApp');
       })
       .catch((error) => {
         // Handle Errors here.
@@ -78,8 +79,6 @@ export const home = () => {
         // ...
         console.log(credential);
       });
-
-    navigateRoutes('/WallApp');
   });
   return divHome;
 };
