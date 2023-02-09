@@ -1,6 +1,13 @@
 /* eslint-disable import/no-cycle */
 import { navigateRoutes } from '../main.js';
-import { signInWithGoogle, provider, login, registerUser, auth } from '../lib/configFirebase.js';
+import {
+  GoogleAuthProvider,
+  provider,
+  login,
+  registerUser,
+  auth,
+  signInWithPopup,
+} from '../lib/configFirebase.js';
 /* HOME DE INICIO DE SESION DE LA APP */
 export const home = () => {
   const divHome = document.createElement('div'); /* div que contiene el bloque de home */
@@ -32,7 +39,7 @@ export const home = () => {
   btnRegister.setAttribute('class', 'btnRegister');
 
   btnLogin.addEventListener('click', () => navigateRoutes('/Login'));
-  btnLoginGoogle.addEventListener('click', () => navigateRoutes('/WallApp'));
+  /* btnLoginGoogle.addEventListener('click', () => navigateRoutes('/WallApp')); */
   btnRegister.addEventListener('click', () => navigateRoutes('/Register')); /* evento click para ejecutar funcion navigate. -param:pathname- */
 
   containerBtn.appendChild(imgLogo);
@@ -52,33 +59,31 @@ export const home = () => {
   });
 
   btnLoginGoogle.addEventListener('click', () => {
-    signInWithGoogle()
+    signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = provider.credentialFromResult(result);
+      // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
         console.log(token);
+        // The signed-in user info.
         const user = result.user;
-        // ...
         console.log(user);
-      })
-      .catch((error) => {
-        // Handle Errors here.
+        // IdP data available using getAdditionalUserInfo(result)
+        navigateRoutes('/WallApp');
+      }).catch((error) => {
+      // Handle Errors here.
         const errorCode = error.code;
-        console.log(errorCode);
+        console.Console(errorCode);
         const errorMessage = error.message;
-        // The email of the user's account used.
         console.log(errorMessage);
+        // The email of the user's account used.
         const email = error.customData.email;
-        // The AuthCredential type that was used.
         console.log(email);
-        const credential = provider.credentialFromError(error);
-        // ...
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
         console.log(credential);
+      // ...
       });
-
-    /* navigateRoutes('/WallApp'); */
   });
   return divHome;
 };
