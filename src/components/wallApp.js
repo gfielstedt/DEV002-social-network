@@ -5,61 +5,63 @@ import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
 import {
-  savePost, getPost, onSnapshot, collection, db,
+  savePost, getPost, onSnapshot, collection, db, deletePost,
 } from '../lib/Firestore.js';
 
 export const wallApp = () => {
   const root = document.getElementById('root');
-  const divroot = document.createElement('div');
+  root.className = 'root';
+  const divButtonLogout = document.createElement('div');
+  divButtonLogout.className = 'div-logout';
   const btnLogout = document.createElement('button');
+  btnLogout.className = 'btn-logout';
+
   const home = document.createElement('div');
-  const divHome = document.createElement('section');
+  home.className = 'div-home';
   /* aqui deberia aparecer el nombre de quien ingreso */
   const welcome = document.createElement('nav');
-  const titleApp = document.createElement('h2');
-  const form = document.createElement('form');
-  const post = document.createElement('textarea');
-  const btnSave = document.createElement('button');
-  const divContainer = document.createElement('div');
-
-  divroot.className = 'div-root';
-  root.className = 'root';
-  btnLogout.className = 'btn-logout';
-  home.className = 'div-home';
-  divHome.className = 'div-home-container';
   welcome.className = 'welcome-text';
+
+  /* titulo de la app */
+  const titleApp = document.createElement('header');
   titleApp.className = 'title-app';
+  titleApp.textContent = '¡Crea espacios, comparte ideas, cuenta tus experiencias!';
+
+  /* formulario */
+  const form = document.createElement('form');
   form.className = 'post-form';
   form.setAttribute('type', 'submit');
-  post.className = 'post';
-  btnSave.className = 'btnSave';
-  divContainer.className = 'divContainer';
-
   form.id = 'post-form';
+
+  const post = document.createElement('textarea');
+  post.className = 'post';
   post.id = 'post';
-  btnSave.id = 'btn-save';
-  divContainer.id = 'tasks-container';
   post.placeholder = '¿Qué quieres compartir hoy?';
+
+  const btnSave = document.createElement('button');
+  btnSave.className = 'btnSave';
+  btnSave.id = 'btn-save';
+  btnSave.textContent = 'Publicar';
+
+  const postContainer = document.createElement('section');
+  postContainer.className = 'postContainer';
+  postContainer.id = 'post-container';
 
   post.rows = '3';
 
   // btnLogout.textContent = 'Log out';
-  titleApp.textContent = '¡Crea espacios, comparte ideas, cuenta tus experiencias!';
-  btnSave.textContent = 'Postear';
 
   /* append */
-  root.appendChild(divroot);
-  divroot.append(btnLogout);
+  root.appendChild(divButtonLogout);
+  divButtonLogout.append(btnLogout);
   home.appendChild(welcome);
   home.appendChild(titleApp);
   home.appendChild(form);
-  divHome.appendChild(home);
   form.appendChild(post);
   form.appendChild(btnSave);
-  home.appendChild(divContainer);
+  home.appendChild(postContainer);
 
-  /* aqui esta el btn cierre de sesión */
-
+  /* boton de cierre de sesión */
   btnLogout.addEventListener('click', () => {
     logout(auth)
       .then(() => {
@@ -75,27 +77,32 @@ export const wallApp = () => {
   });
   return home;
 };
-/* junto al btn de save esta la creación de post */
 
 export const getDataPost = async (event) => { // me permite visualizar el contenido
   const postForm = document.getElementById('post-form'); // contiene el formulario
-  const divContainer = document.getElementById('tasks-container'); // contenedor del form
+  const postContainer = document.getElementById('post-container'); // contenedor del form
 
-  onSnapshot(collection(db, 'posteos'), (querySnapshot) => {
+  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
     let html = '';
 
     querySnapshot.forEach(doc => {
       const postWall = doc.data();
       html += `
-    <div> 
-      <h3>${postWall.post}</h3>
-      <button class=btn-delete> Eliminar </button>
+    <div class = 'div-post'> 
+      <p class= 'post-cont'>${postWall.post}</p>
+      <button class='btn-delete' data-id='${doc.id}'></button>
     </div> `;
       // console.log(doc.data());
     });
-    divContainer.innerHTML = html;
-    const deleteBtn = divContainer.querySelectorAll('.btn-delete');
-    console.log(deleteBtn);
+    postContainer.innerHTML = html;
+    const deleteBtn = postContainer.querySelectorAll('.btn-delete');
+
+    deleteBtn.forEach(btn => {
+      deleteBtn.addEventListener('click', ({ target: { dataset } }) => {
+        deletePost(dataset.id);
+      });
+    });
+
     postForm.addEventListener('submit', (e) => {
       e.preventDefault();
 

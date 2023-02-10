@@ -18,3 +18,5 @@ export const onGetPost = () => console.log('onGetPost');
 export {
   onSnapshot, collection, db,
 };
+
+export const deletePost = (id) => console.log(id);

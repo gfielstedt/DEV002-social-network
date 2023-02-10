@@ -48,7 +48,7 @@ export const loginpage = () => {
     const passwordUser = password.value;
     login(emailUser, passwordUser)
       .then((userCredential) => {
-        console.log(userCredential);
+        // console.log(userCredential);
         // Signed in /*const user = userCredential.user;*/
         navigateRoutes('/WallApp'); // ...
       })
