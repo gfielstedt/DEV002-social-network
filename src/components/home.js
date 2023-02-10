@@ -89,4 +89,4 @@ export const home = () => {
   return divHome;
 };
 
-/* hola ginaaa y  hola belen */
+/* hola ginaaa y  hola belen y chao */
