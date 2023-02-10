@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 /* aca va el muro de la app, se desplega el menu y cierre de sesion */
 // y contiene la opcion de publicar*/
@@ -75,17 +76,34 @@ export const wallApp = () => {
         console.log(error);
       });
   });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // const postSave = document.getElementById('post');
+    savePost(post.value);
+
+    form.reset();
+    await getDataPost();
+    const deleteBtn = postContainer.querySelectorAll('.btn-delete');
+    console.log(deleteBtn);
+
+    deleteBtn.forEach(btn => {
+      deleteBtn.addEventListener('click', ({ target: { dataset } }) => {
+        deletePost(dataset.id);
+      });
+    });
+    // console.log(postSave.value);
+  });
   return home;
 };
 
-export const getDataPost = async (event) => { // me permite visualizar el contenido
-  const postForm = document.getElementById('post-form'); // contiene el formulario
+export async function getDataPost() { // me permite visualizar el contenido
   const postContainer = document.getElementById('post-container'); // contenedor del form
 
-  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
+  onSnapshot(collection(db, 'posteos'), async (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
     let html = '';
 
-    querySnapshot.forEach(doc => {
+    await querySnapshot.forEach(doc => {
       const postWall = doc.data();
       html += `
     <div class = 'div-post'> 
@@ -95,24 +113,8 @@ export const getDataPost = async (event) => { // me permite visualizar el conten
       // console.log(doc.data());
     });
     postContainer.innerHTML = html;
-    const deleteBtn = postContainer.querySelectorAll('.btn-delete');
-
-    deleteBtn.forEach(btn => {
-      deleteBtn.addEventListener('click', ({ target: { dataset } }) => {
-        deletePost(dataset.id);
-      });
-    });
-
-    postForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // const postSave = document.getElementById('post');
-      savePost(post.value);
-
-      postForm.reset();
-      // console.log(postSave.value);
-    });
   });
+
   // const querySnapshot = await getPost();
 };
 

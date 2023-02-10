@@ -313,7 +313,16 @@
         padding: 10px 10px;
         width: 200px;
     }
-
+    /* LOGIN */
+    .sectionSignIn {
+        margin: 5% 30%;
+    }
+    .btnLogIn {
+        width: 40%;
+    }
+    .login-div {
+        padding: 10%;
+    }
     /* REGISTER */
     .containerRegister .texth3 {
         margin: 40px 0px 10px 0px;
