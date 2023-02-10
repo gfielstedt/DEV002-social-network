@@ -148,6 +148,7 @@
     background-color: black;
     color: white;
     border-radius: 50px;
+
     padding: 10px 40px;
     font-size: 14px;
     margin: 10px 40px;
@@ -336,5 +337,3 @@
         background-color: rgb(225, 240, 243);
         border-radius: 20px;
     }
-    
-}

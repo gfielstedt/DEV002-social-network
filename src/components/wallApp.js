@@ -67,7 +67,7 @@ export const wallApp = () => {
     logout(auth)
       .then(() => {
         // Sign-out successful.
-        alert('Estas seguro de que quieres cerrar sesion?'); // aca debe ir una ventana modal
+        alert('¿Estas seguro de que quieres cerrar sesion?'); // aca debe ir una ventana modal
         console.log('Sign-out successful');
         navigateRoutes('/');
       })
