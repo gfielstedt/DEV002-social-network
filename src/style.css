@@ -1,5 +1,12 @@
 /* ************** HOME *************** */
-
+@font-face {
+    font-family: letter;
+    src: url(./imagenes/aliens\ and\ cows_trial.ttf);
+}
+@font-face {
+    font-family: posterman;
+    src: url(./imagenes/Posterman_PERSONAL_USE_ONLY.otf);
+}
 * {
     font-family:  Geneva, Verdana, sans-serif;
     font-size: large;
@@ -7,10 +14,10 @@
 }
 
 .divHome {
-    width: 100%;
+    /* width: 100%;
     height: 100%;
     margin: 0;
-    padding: 0;
+    padding: 0; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,8 +204,7 @@
     display: flex;
     flex-direction: column;
 }
-
-.div-root {
+.div-logout {
     display: flex;
     justify-content: flex-end;
 }
@@ -223,6 +229,7 @@
     cursor: pointer;
 }
 .title-app {
+    /* font-family: posterman; */
     font-size: 25px;
 }
 .post-form{
@@ -231,34 +238,70 @@
     flex-direction: column;
     gap: 2vh;
 }
-
+.post {
+    border-radius: 20px;
+    background-color: rgb(225, 240, 243);
+}
 .btnSave {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: letter;
+    font-size: 20px;
     background-color: black;
     color: white;
     border-radius: 10px;
     width: 100px;
     height: 50px;
 }
-
 .btnSave:hover {
     background-color: rgb(251, 255, 0);
     color: black;
     border: 2px solid black;
     cursor: pointer;
 }
-
+.postContainer {
+    display: flex;
+    flex-direction: column;
+}
+.div-post {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgb(248, 248, 255);
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.post-cont {
+    background-color: rgb(248, 248, 255);
+    margin: 4px 15px 15px;
+}
+.btn-delete {
+    background-image: url(./imagenes/trash.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
 
 
 @media screen and (min-width:900px) and (max-width:1400px) {
-
+    .divHome {
+        position: relative;
+    }
+    .imgLogo {
+        margin: 5%;
+    }
     .containerBtn {
         display: flex;
         flex-direction: column;
         gap: 3vh;
-        margin: 5%;
+        margin: 1%;
     };
 
     .btnLogin {
@@ -271,4 +314,18 @@
         width: 200px;
     }
 
+    /* REGISTER */
+    .containerRegister .texth3 {
+        margin: 40px 0px 10px 0px;
+    }
+    /* WALL */
+    .title-app{
+        font-family: posterman;
+        font-size: 30px;
+    }
+    .post {
+        background-color: rgb(225, 240, 243);
+        border-radius: 20px;
+    }
+    
 }
