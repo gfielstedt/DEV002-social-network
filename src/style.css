@@ -290,11 +290,11 @@
     cursor: pointer;
 }
 
-
 @media screen and (min-width:900px) and (max-width:1400px) {
     .divHome {
         position: relative;
     }
+
     .imgLogo {
         margin: 5%;
     }
@@ -306,8 +306,7 @@
     };
 
     .btnLogin {
-        display: flex;
-        justify-content: center;
+        position: relative;
         background-color: white;
         color: black;
         border-radius: 5px;
@@ -318,6 +317,7 @@
     /* REGISTER */
     .containerRegister .texth3 {
         margin: 40px 0px 10px 0px;
+
     }
     /* WALL */
     .title-app{
@@ -328,3 +328,4 @@
         background-color: rgb(225, 240, 243);
         border-radius: 20px;
     }
+}
