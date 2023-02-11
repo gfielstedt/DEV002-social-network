@@ -2,7 +2,7 @@
 import { loginpage } from './components/login.js';
 import { home } from './components/home.js';
 import { register } from './components/register.js';
-import { wallApp, getDataPost } from './components/wallApp.js';
+import { wallApp } from './components/wallApp.js';
 
 const root = document.getElementById('root'); /* contenido de html */
 
@@ -23,9 +23,6 @@ export const navigateRoutes = (pathname) => {
     root.removeChild(root.firstChild);
   }
   root.appendChild(routes[pathname]());
-  if (pathname === '/WallApp') {
-    getDataPost();
-  }
 };
 console.log(window.location.pathname);
 const component = routes[window.location.pathname]();/* variable que contiene el pathname */
