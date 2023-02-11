@@ -62,6 +62,8 @@ export const wallApp = () => {
   form.appendChild(btnSave);
   home.appendChild(postContainer);
 
+  getDataPost(postContainer);
+
   /* boton de cierre de sesión */
   btnLogout.addEventListener('click', () => {
     logout(auth)
@@ -83,7 +85,6 @@ export const wallApp = () => {
     savePost(post.value);
 
     form.reset();
-    await getDataPost();
     const deleteBtn = postContainer.querySelectorAll('.btn-delete');
     console.log(deleteBtn);
 
@@ -97,13 +98,11 @@ export const wallApp = () => {
   return home;
 };
 
-export async function getDataPost() { // me permite visualizar el contenido
-  const postContainer = document.getElementById('post-container'); // contenedor del form
-
-  onSnapshot(collection(db, 'posteos'), async (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
+export function getDataPost(postContainer) { // me permite visualizar el contenido
+  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
     let html = '';
 
-    await querySnapshot.forEach(doc => {
+    querySnapshot.forEach((doc) => {
       const postWall = doc.data();
       html += `
     <div class = 'div-post'> 
