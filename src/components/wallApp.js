@@ -115,6 +115,6 @@ export function getDataPost(postContainer) { // me permite visualizar el conteni
   });
 
   // const querySnapshot = await getPost();
-};
+}
 
 // getPost();
