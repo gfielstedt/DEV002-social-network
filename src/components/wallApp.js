@@ -6,7 +6,7 @@ import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
 import {
-  savePost, getPost, onSnapshot, collection, db, deletePost,
+  savePost, onSnapshot, collection, db, deletePost,
 } from '../lib/Firestore.js';
 
 export const wallApp = () => {
@@ -62,7 +62,52 @@ export const wallApp = () => {
   form.appendChild(btnSave);
   home.appendChild(postContainer);
 
-  getDataPost(postContainer);
+  const user = auth.currentUser;
+  console.log(user);
+  const uid = user.uid;
+
+  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
+    let html = '';
+
+    querySnapshot.forEach((doc) => {
+      const postWall = doc.data();
+      // console.log(doc.id);
+      if (uid === postWall.idUser) {
+        html += `
+    <div class = 'div-post'> 
+      <p class= 'post-cont'>${postWall.post}</p>
+      <div class = 'div-buttons-post'>
+      <button class='btn-delete ${postWall.idUser}' data-id='${doc.id}'></button>
+      </div>
+    </div> `;
+      } else {
+      // console.log(doc.data());
+        html += `
+      <div class = 'div-post'> 
+        <p class= 'post-cont'>${postWall.post}</p>
+      </div> `;
+      }
+    });
+    postContainer.innerHTML = html;
+
+    // const editBtn = postContainer.querySelectorAll('.btn-edit');
+    // editBtn.forEach((btn) => {
+    //   btn.addEventListener('click', async (e) => {
+    //     const doc = await editPost(e.target.dataset.id);
+    //     const post = doc.data();
+
+    //     postContainer['post-container'].value = postWall.post;
+    //     // console.log(dataset.id);
+    //   });
+    // });
+    const deleteBtn = postContainer.querySelectorAll('.btn-delete');
+    deleteBtn.forEach((btn) => {
+      btn.addEventListener('click', ({ target: { dataset } }) => {
+        deletePost(dataset.id);
+        // console.log(dataset.id);
+      });
+    });
+  });
 
   /* boton de cierre de sesión */
   btnLogout.addEventListener('click', () => {
@@ -82,39 +127,12 @@ export const wallApp = () => {
     e.preventDefault();
 
     // const postSave = document.getElementById('post');
-    savePost(post.value);
+    savePost(post.value, uid);
 
     form.reset();
-    const deleteBtn = postContainer.querySelectorAll('.btn-delete');
-    console.log(deleteBtn);
 
-    deleteBtn.forEach(btn => {
-      deleteBtn.addEventListener('click', ({ target: { dataset } }) => {
-        deletePost(dataset.id);
-      });
-    });
     // console.log(postSave.value);
   });
   return home;
 };
-
-export function getDataPost(postContainer) { // me permite visualizar el contenido
-  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
-    let html = '';
-
-    querySnapshot.forEach((doc) => {
-      const postWall = doc.data();
-      html += `
-    <div class = 'div-post'> 
-      <p class= 'post-cont'>${postWall.post}</p>
-      <button class='btn-delete' data-id='${doc.id}'></button>
-    </div> `;
-      // console.log(doc.data());
-    });
-    postContainer.innerHTML = html;
-  });
-
-  // const querySnapshot = await getPost();
-}
-
-// getPost();
+// <buttom class='btn-edit' data-id='${doc.id}></button>

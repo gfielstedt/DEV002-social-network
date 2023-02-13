@@ -1,13 +1,14 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable eol-last */
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, doc, deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 const db = getFirestore();
 
-export const savePost = (post) => {
-  addDoc(collection(db, 'posteos'), { post });
+export const savePost = (post, id) => {
+  const newPost = { post, idUser: id };
+  addDoc(collection(db, 'posteos'), newPost);
   console.log(post);
 };
 
@@ -19,4 +20,4 @@ export {
   onSnapshot, collection, db,
 };
 
-export const deletePost = (id) => console.log(id);
+export const deletePost = (id) => deleteDoc(doc(db, 'posteos', id));

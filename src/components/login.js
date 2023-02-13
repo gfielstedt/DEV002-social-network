@@ -48,7 +48,7 @@ export const loginpage = () => {
     const passwordUser = password.value;
     login(emailUser, passwordUser)
       .then((userCredential) => {
-        // console.log(userCredential);
+        console.log(userCredential);
         // Signed in /*const user = userCredential.user;*/
         navigateRoutes('/WallApp'); // ...
       })
@@ -56,8 +56,8 @@ export const loginpage = () => {
         console.error(error);
         const errorCode = error.code;
         const errorMessage = error.message;
-        // console.log(errorCode);
-        // console.log(errorMessage);
+        console.log(errorCode);
+        console.log(errorMessage);
       });
   });
 
