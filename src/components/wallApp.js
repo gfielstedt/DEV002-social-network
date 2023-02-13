@@ -6,7 +6,7 @@ import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
 import {
-  savePost, getPost, onSnapshot, collection, db, deletePost,
+  savePost, onSnapshot, collection, db, deletePost,
 } from '../lib/Firestore.js';
 
 export const wallApp = () => {
@@ -62,7 +62,20 @@ export const wallApp = () => {
   form.appendChild(btnSave);
   home.appendChild(postContainer);
 
-  getDataPost(postContainer);
+  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
+    let html = '';
+
+    querySnapshot.forEach((doc) => {
+      const postWall = doc.data();
+      html += `
+    <div class = 'div-post'> 
+      <p class= 'post-cont'>${postWall.post}</p>
+      <button class='btn-delete' data-id='${doc.id}'></button>
+    </div> `;
+      // console.log(doc.data());
+    });
+    postContainer.innerHTML = html;
+  });
 
   /* boton de cierre de sesión */
   btnLogout.addEventListener('click', () => {
@@ -88,7 +101,7 @@ export const wallApp = () => {
     const deleteBtn = postContainer.querySelectorAll('.btn-delete');
     console.log(deleteBtn);
 
-    deleteBtn.forEach(btn => {
+    deleteBtn.forEach(() => {
       deleteBtn.addEventListener('click', ({ target: { dataset } }) => {
         deletePost(dataset.id);
       });
@@ -97,24 +110,3 @@ export const wallApp = () => {
   });
   return home;
 };
-
-export function getDataPost(postContainer) { // me permite visualizar el contenido
-  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
-    let html = '';
-
-    querySnapshot.forEach((doc) => {
-      const postWall = doc.data();
-      html += `
-    <div class = 'div-post'> 
-      <p class= 'post-cont'>${postWall.post}</p>
-      <button class='btn-delete' data-id='${doc.id}'></button>
-    </div> `;
-      // console.log(doc.data());
-    });
-    postContainer.innerHTML = html;
-  });
-
-  // const querySnapshot = await getPost();
-};
-
-// getPost();
