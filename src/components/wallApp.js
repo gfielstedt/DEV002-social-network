@@ -6,7 +6,7 @@ import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
 import {
-  savePost, getPost, onSnapshot, collection, db, deletePost,
+  savePost, onSnapshot, collection, db, deletePost,
 } from '../lib/Firestore.js';
 
 export const wallApp = () => {
@@ -115,6 +115,6 @@ export function getDataPost(postContainer) { // me permite visualizar el conteni
   });
 
   // const querySnapshot = await getPost();
-};
+}
 
 // getPost();
