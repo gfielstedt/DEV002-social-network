@@ -6,7 +6,7 @@ import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
 import {
-  savePost, onSnapshot, collection, db, deletePost,
+  savePost, onSnapshot, collection, db, deletePost, editPost,
 } from '../lib/Firestore.js';
 
 export const wallApp = () => {
@@ -63,7 +63,7 @@ export const wallApp = () => {
   home.appendChild(postContainer);
 
   const user = auth.currentUser;
-  console.log(user);
+  // console.log(user);
   const uid = user.uid;
 
   onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
@@ -77,7 +77,11 @@ export const wallApp = () => {
     <div class = 'div-post'> 
       <p class= 'post-cont'>${postWall.post}</p>
       <div class = 'div-buttons-post'>
+      <span>
+      <button class= 'btn-like'> </button>
+      <button class= 'btn-edit' data-id= '${doc.id}'> </button>
       <button class='btn-delete ${postWall.idUser}' data-id='${doc.id}'></button>
+      </span>
       </div>
     </div> `;
       } else {
@@ -85,21 +89,22 @@ export const wallApp = () => {
         html += `
       <div class = 'div-post'> 
         <p class= 'post-cont'>${postWall.post}</p>
+        <button class= 'btn like'></button>
       </div> `;
       }
     });
     postContainer.innerHTML = html;
 
-    // const editBtn = postContainer.querySelectorAll('.btn-edit');
-    // editBtn.forEach((btn) => {
-    //   btn.addEventListener('click', async (e) => {
-    //     const doc = await editPost(e.target.dataset.id);
-    //     const post = doc.data();
-
-    //     postContainer['post-container'].value = postWall.post;
-    //     // console.log(dataset.id);
-    //   });
-    // });
+    const editBtn = postContainer.querySelectorAll('.btn-edit');
+    editBtn.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        console.log(e.target.dataset.id);
+        // const doc = await editPost(e.target.dataset.id);
+        // console.log(doc.id);
+        // form[post].value = postWall.post; //aca deberia ir el .value de cada post
+        // console.log(dataset.id);
+      });
+    });
     const deleteBtn = postContainer.querySelectorAll('.btn-delete');
     deleteBtn.forEach((btn) => {
       btn.addEventListener('click', ({ target: { dataset } }) => {

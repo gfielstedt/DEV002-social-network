@@ -1,7 +1,8 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable eol-last */
 import {
-  getFirestore, collection, addDoc, getDocs, onSnapshot, doc, deleteDoc,
+  getFirestore, collection, addDoc, getDocs, onSnapshot, doc, deleteDoc, updateDoc,
+  arrayUnion, arrayRemove,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js';
 
 const db = getFirestore();
@@ -21,3 +22,5 @@ export {
 };
 
 export const deletePost = (id) => deleteDoc(doc(db, 'posteos', id));
+
+export const editPost = (id, newPost) => updateDoc(doc(db, 'posteos', id), newPost);
