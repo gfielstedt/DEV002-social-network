@@ -279,8 +279,11 @@
     background-color: rgb(248, 248, 255);
     margin: 4px 15px 15px;
 }
-.btn-delete {
-    background-image: url(./imagenes/trash.png);
+.btn-like {
+    
+}
+.btn-edit {
+    background-image: url(./imagenes/edit.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -289,8 +292,8 @@
     border: none;
     cursor: pointer;
 }
-.btn-edit {
-    background-image: url(./imagenes/edit.png);
+.btn-delete {
+    background-image: url(./imagenes/trash.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

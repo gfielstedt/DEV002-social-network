@@ -6,7 +6,7 @@ import { navigateRoutes } from '../main.js';
 // eslint-disable-next-line object-curly-newline
 import { logout, auth } from '../lib/configFirebase.js';
 import {
-  savePost, onSnapshot, collection, db, deletePost,
+  savePost, onGetPost, deletePost, editPost, getPostForId, like, dislike,
 } from '../lib/Firestore.js';
 
 export const wallApp = () => {
@@ -64,9 +64,12 @@ export const wallApp = () => {
 
   const user = auth.currentUser;
   console.log(user);
+  if (user === null) {
+    return navigateRoutes('/Login');
+  }
   const uid = user.uid;
 
-  onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
+  onGetPost((querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
     let html = '';
 
     querySnapshot.forEach((doc) => {
@@ -77,29 +80,56 @@ export const wallApp = () => {
     <div class = 'div-post'> 
       <p class= 'post-cont'>${postWall.post}</p>
       <div class = 'div-buttons-post'>
+      <span>
+      <button class= 'btn-like' data-id='${doc.id}'> ${postWall.currentLike}</button>
+      <button class= 'btn-edit' data-id= '${doc.id}'> </button>
       <button class='btn-delete ${postWall.idUser}' data-id='${doc.id}'></button>
+      </span>
       </div>
     </div> `;
       } else {
-      // console.log(doc.data());
+        // console.log(doc.data());
         html += `
       <div class = 'div-post'> 
         <p class= 'post-cont'>${postWall.post}</p>
+        <button class= 'btn like' data-id='${doc.id}'></button>
       </div> `;
       }
     });
     postContainer.innerHTML = html;
 
-    // const editBtn = postContainer.querySelectorAll('.btn-edit');
-    // editBtn.forEach((btn) => {
-    //   btn.addEventListener('click', async (e) => {
-    //     const doc = await editPost(e.target.dataset.id);
-    //     const post = doc.data();
+    const likeBtn = postContainer.querySelectorAll('.btn-like');
+    likeBtn.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const likeButtonId = e.target.dataset.id;
+        const userLikeButton = uid;
+        getPostForId(likeButtonId)
+          .then((document) => {
+            const post = document.data();
+            if (!post.userLike.includes(userLikeButton)) {
+              // eslint-disable-next-line indent, no-unused-expressions
+        const likes = post.currentLike + 1;
+              like(likeButtonId, likes, userLikeButton);
+            } else {
+              const likes = post.currentLike - 1;
+              dislike(likeButtonId, likes, userLikeButton);
+            }
+          });
+      });
+    });
 
-    //     postContainer['post-container'].value = postWall.post;
-    //     // console.log(dataset.id);
-    //   });
-    // });
+    const editBtn = postContainer.querySelectorAll('.btn-edit');
+    editBtn.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        console.log(e.target.dataset.id);
+        // const doc = await editPost(e.target.id);
+        // console.log(doc.id);
+        // form[post].value = postWall.post; //aca deberia ir el .value de cada post
+        // console.log(dataset.id);
+        const editpost = prompt('Edita tu comentario');
+        editPost(e.target.dataset.id, { post: editpost });
+      });
+    });
     const deleteBtn = postContainer.querySelectorAll('.btn-delete');
     deleteBtn.forEach((btn) => {
       btn.addEventListener('click', ({ target: { dataset } }) => {
@@ -114,6 +144,7 @@ export const wallApp = () => {
     logout(auth)
       .then(() => {
         // Sign-out successful.
+        // eslint-disable-next-line no-alert
         alert('¿Estas seguro de que quieres cerrar sesion?'); // aca debe ir una ventana modal
         console.log('Sign-out successful');
         navigateRoutes('/');
@@ -127,8 +158,7 @@ export const wallApp = () => {
     e.preventDefault();
 
     // const postSave = document.getElementById('post');
-    savePost(post.value, uid);
-
+    savePost(post.value, uid, 0, []);
     form.reset();
 
     // console.log(postSave.value);

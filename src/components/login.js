@@ -53,7 +53,7 @@ export const loginpage = () => {
         navigateRoutes('/WallApp'); // ...
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode);

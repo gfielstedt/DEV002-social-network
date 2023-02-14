@@ -28,13 +28,13 @@ jest.mock('..src/lib/configFirebase,js', () => ({
 
       return Promise.resolve();
     }
-  })
+  }),
 }));
 // igualar
 login;
 jest.fn((auth, email, password) => {
   if (!email || !password) {
-    throw new Error("Campo de correo o contraseña vacíos");
+    throw new Error('Campo de correo o contraseña vacíos');
   }
   if (email === 'anapere@gmail.com') {
     throw new Error('Correo ingresado inválido');
@@ -43,37 +43,37 @@ jest.fn((auth, email, password) => {
     return 'Correo ingresado válido';
   }
   return Promise.resolve();
-})
+});
 
 logout;
 jest.fn((auth) => {
-    if (!auth) return Promise.reject('no hay usuario logueado');
-  }),
-  updateProfile;
+  if (!auth) return Promise.reject('no hay usuario logueado');
+}),
+updateProfile;
 jest.fn((auth, emailUser) => {
   if (!auth === !emailUser) {
     return Promise.resolve();
   }
-})
+});
 
 describe('Test createUserWithEmailAndPassword'), () => {
-  //llama a 
+  // llama a
   it('signInWithEmailAndPassword'), async () => {
     await signInWithEmailAndPassword(auth, email, password);
     expect(createUserWithEmailAndPassword).toHaveBeenCalled();
-  }
+  };
 };
 
 it('Retorna error campo vacío'), async () => {
   try {
-    await signUpWithPass(auth, " ", password);
+    await signUpWithPass(auth, ' ', password);
   } catch (error) {
-    expect(error.code).toBe("Campo de correo o contraseña vacíos");
+    expect(error.code).toBe('Campo de correo o contraseña vacíos');
   }
 };
 
 describe('Test signInWithEmailAndPassword'), () => {
-  //llama a 
+  // llama a
   it('signInWithPopup debe ser función', () => {
     expect(typeof signInWithPopup).toBe('function');
   });
@@ -81,5 +81,4 @@ describe('Test signInWithEmailAndPassword'), () => {
     await signInWithPopup(auth, provider);
     expect(signInWithPopup).toHaveBeenCalled();
   });
-
 };
