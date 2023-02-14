@@ -80,11 +80,9 @@ export const wallApp = () => {
     <div class = 'div-post'> 
       <p class= 'post-cont'>${postWall.post}</p>
       <div class = 'div-buttons-post'>
-      <span>
       <button class= 'btn-like' data-id='${doc.id}'> ${postWall.currentLike}</button>
       <button class= 'btn-edit' data-id= '${doc.id}'> </button>
       <button class='btn-delete ${postWall.idUser}' data-id='${doc.id}'></button>
-      </span>
       </div>
     </div> `;
       } else {
@@ -92,7 +90,7 @@ export const wallApp = () => {
         html += `
       <div class = 'div-post'> 
         <p class= 'post-cont'>${postWall.post}</p>
-        <button class= 'btn like' data-id='${doc.id}'></button>
+        <button class= 'btn-like' data-id='${doc.id}'>${postWall.currentLike}</button>
       </div> `;
       }
     });
