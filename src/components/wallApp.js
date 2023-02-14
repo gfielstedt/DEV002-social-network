@@ -63,7 +63,10 @@ export const wallApp = () => {
   home.appendChild(postContainer);
 
   const user = auth.currentUser;
-  // console.log(user);
+  console.log(user);
+  if (user === null) {
+    return navigateRoutes('/Login');
+  }
   const uid = user.uid;
 
   onSnapshot(collection(db, 'posteos'), (querySnapshot) => { // me muestra la db de la coleccion posteos de firestore
@@ -85,7 +88,7 @@ export const wallApp = () => {
       </div>
     </div> `;
       } else {
-      // console.log(doc.data());
+        // console.log(doc.data());
         html += `
       <div class = 'div-post'> 
         <p class= 'post-cont'>${postWall.post}</p>
@@ -103,6 +106,8 @@ export const wallApp = () => {
         // console.log(doc.id);
         // form[post].value = postWall.post; //aca deberia ir el .value de cada post
         // console.log(dataset.id);
+        const editpost = prompt("actuliza tu comentario");
+        editPost(e.target.dataset.id, { post: editpost });
       });
     });
     const deleteBtn = postContainer.querySelectorAll('.btn-delete');
@@ -119,6 +124,7 @@ export const wallApp = () => {
     logout(auth)
       .then(() => {
         // Sign-out successful.
+        // eslint-disable-next-line no-alert
         alert('¿Estas seguro de que quieres cerrar sesion?'); // aca debe ir una ventana modal
         console.log('Sign-out successful');
         navigateRoutes('/');
