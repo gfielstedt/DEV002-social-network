@@ -369,3 +369,7 @@
         border-radius: 20px;
     }
 }
+
+@media screen and (min-width:820px) and (max-width:1180px) {
+    
+}
