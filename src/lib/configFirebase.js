@@ -3,9 +3,12 @@
 // Import the functions you need from the SDKs you need (cdn)
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import {
-  getAuth, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, GoogleAuthProvider,
-  signInWithPopup, signOut,
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 
 import { firebaseConfig } from './firebaseData.js';

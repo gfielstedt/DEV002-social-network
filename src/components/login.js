@@ -48,16 +48,16 @@ export const loginpage = () => {
     const passwordUser = password.value;
     login(emailUser, passwordUser)
       .then((userCredential) => {
-        // console.log(userCredential);
+        console.log(userCredential);
         // Signed in /*const user = userCredential.user;*/
         navigateRoutes('/WallApp'); // ...
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
         const errorCode = error.code;
         const errorMessage = error.message;
-        // console.log(errorCode);
-        // console.log(errorMessage);
+        console.log(errorCode);
+        console.log(errorMessage);
       });
   });
 

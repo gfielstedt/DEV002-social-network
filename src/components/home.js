@@ -74,7 +74,7 @@ export const home = () => {
         // Handle Errors here.
 
         const errorCode = error.code;
-        console.Console(errorCode);
+        console.log(errorCode);
         const errorMessage = error.message;
         console.log(errorMessage);
         // The email of the user's account used.
