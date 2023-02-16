@@ -103,13 +103,13 @@ export const wallApp = () => {
         const userLikeButton = uid;
         getPostForId(likeButtonId)
           .then((document) => {
-            const post = document.data();
-            if (!post.userLike.includes(userLikeButton)) {
+            const postdata = document.data();
+            if (!postdata.userLike.includes(userLikeButton)) {
               // eslint-disable-next-line indent, no-unused-expressions
-        const likes = post.currentLike + 1;
+        const likes = postdata.currentLike + 1;
               like(likeButtonId, likes, userLikeButton);
             } else {
-              const likes = post.currentLike - 1;
+              const likes = postdata.currentLike - 1;
               dislike(likeButtonId, likes, userLikeButton);
             }
           });

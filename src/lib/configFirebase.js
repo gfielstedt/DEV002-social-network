@@ -43,4 +43,4 @@ export const signInWithGoogle = () => signInWithPopup(auth, provider);
 
 export const logout = () => signOut(auth);
 
-export { GoogleAuthProvider, signInWithPopup };
+export { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword };
